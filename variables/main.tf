@@ -55,6 +55,6 @@ output "courses" {
     value = var.courses[1]
 }
 
-output "courses_details {
+output "courses_details" {
     value = var.courses_details["devops"]
 }
