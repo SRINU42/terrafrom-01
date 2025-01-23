@@ -56,5 +56,5 @@ output "courses" {
 }
 
 output "courses_details" {
-    value = var.courses_details["devops"]
+    value = var.courses_details["Devops"]
 }
