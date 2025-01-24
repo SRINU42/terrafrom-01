@@ -32,3 +32,6 @@ data "aws_ami" "amiid" {
     value = data.aws_ami.amiid.id
   }
 
+provider "aws" {
+    region = "us-east-1"
+}
