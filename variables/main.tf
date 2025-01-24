@@ -30,7 +30,7 @@ variable "courses" {
     ]
 }
 
-variable "courses_details"{
+variable "courses_details" {
     default = {
         Devops = {
             name = "Devops"
