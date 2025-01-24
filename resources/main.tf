@@ -5,6 +5,7 @@ resource "aws_instance" "web" {
   tags = {
     Name = "HelloWorld"
   }
+}
 
 data "aws_ami" "amiid" {
   owners           = ["973714476881"]
