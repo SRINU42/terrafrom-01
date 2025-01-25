@@ -4,16 +4,16 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.sg.id]
 
   tags = {
-    Name = "frontend"
+    Name = "sample"
   }
   
   provisioner "remote-exec" {
 
     connection {
-        type     = "ssh"
-        user     = "Centos"
-        password = "DevOps321"
-        host     = self.public_ip
+    type     = "ssh"
+    user     = "Centos"
+    password = "DevOps321"
+    host     = self.public_ip
     }
 
     inline = [
@@ -32,7 +32,7 @@ data "aws_ami" "amiid" {
   }
 
 resource "aws_security_group" "sg" {
-  name        = "frontend"
+  name        = "sample"
   description = "Allow TLS inbound traffic"
  
 
@@ -52,7 +52,7 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    Name = "frontend"
+    Name = "sample"
   }
 }
 
