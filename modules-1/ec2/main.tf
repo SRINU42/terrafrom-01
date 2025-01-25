@@ -16,7 +16,7 @@ data "aws_ami" "amiid" {
   }
 
 resource "aws_security_group" "sg" {
-  name        = var.sample
+  name        = var.name
   description = "Allow TLS inbound traffic"
  
 
