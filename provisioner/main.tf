@@ -6,9 +6,7 @@ resource "aws_instance" "web" {
   tags = {
     Name = frontend
   }
-}
-
-
+  
   provisioner "remote-exec" {
     connection {
     type     = "ssh"
@@ -21,7 +19,7 @@ resource "aws_instance" "web" {
       "ansible-pull -i localhost, -U https://github.com/SRINU42/roboansible.git main.yml -e env=dev -e role_name=frontend"
     ]
   }
-
+}
 
 
 data "aws_ami" "amiid" {
