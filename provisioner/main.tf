@@ -8,12 +8,14 @@ resource "aws_instance" "web" {
   }
   
   provisioner "remote-exec" {
+
     connection {
         type     = "ssh"
         user     = "Centos"
         password = "DevOps321"
         host     = self.public_ip
-  }
+    }
+
     inline = [
       "sudo labauto ansible" ,
       "ansible-pull -i localhost, -U https://github.com/SRINU42/roboansible.git main.yml -e env=dev -e role_name=frontend"
@@ -35,9 +37,9 @@ resource "aws_security_group" "sg" {
  
 
   ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
+    
+    from_port   = 0
+    to_port     = 0
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
