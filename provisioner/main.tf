@@ -9,10 +9,10 @@ resource "aws_instance" "web" {
   
   provisioner "remote-exec" {
     connection {
-    type     = "ssh"
-    user     = "Centos"
-    password = "DevOps321"
-    host     = self.public_ip
+        type     = "ssh"
+        user     = "Centos"
+        password = "DevOps321"
+        host     = self.public_ip
   }
     inline = [
       "sudo labauto ansible" ,
