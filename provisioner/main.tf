@@ -4,7 +4,7 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.sg.id]
 
   tags = {
-    Name = frontend
+    Name = "frontend"
   }
   
   provisioner "remote-exec" {
@@ -30,7 +30,7 @@ data "aws_ami" "amiid" {
   }
 
 resource "aws_security_group" "sg" {
-  name        = frontend
+  name        = "frontend"
   description = "Allow TLS inbound traffic"
  
 
@@ -50,7 +50,7 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    Name = frontend
+    Name = "frontend"
   }
 }
 
