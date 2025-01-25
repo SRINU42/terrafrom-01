@@ -4,26 +4,23 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.sg.id]
 
   tags = {
-    Name = var.name
+    Name = frontend
   }
 }
 
-resource "aws_instance" "web" {
-  
-  connection {
+
+  provisioner "remote-exec" {
+    connection {
     type     = "ssh"
     user     = "Centos"
     password = "DevOps321"
     host     = self.public_ip
   }
-
-  provisioner "remote-exec" {
     inline = [
       "sudo labauto ansible" ,
       "ansible-pull -i localhost, -U https://github.com/SRINU42/roboansible.git main.yml -e env=dev -e role_name=frontend"
     ]
   }
-}
 
 
 
@@ -35,7 +32,7 @@ data "aws_ami" "amiid" {
   }
 
 resource "aws_security_group" "sg" {
-  name        = var.name
+  name        = frontend
   description = "Allow TLS inbound traffic"
  
 
@@ -55,9 +52,9 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    Name = var.name
+    Name = frontend
   }
 }
 
-variable "name" {}
+
 
