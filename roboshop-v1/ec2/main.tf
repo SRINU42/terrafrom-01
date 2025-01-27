@@ -1,6 +1,6 @@
 resource "aws_instance" "web" {
   ami           = data.aws_ami.amiid.id
-  instance_type = "t3.micro"
+  instance_type = "t3.small"
   vpc_security_group_ids = [aws_security_group.sg.id]
 
   tags = {
@@ -8,15 +8,15 @@ resource "aws_instance" "web" {
   }
   provisioner "remote-exec" {
     connection {
-    type     = "ssh"
-    user     = "centos"
-    password = "DevOps321"
-    host     = self.public_ip
+      type     = "ssh"
+      user     = "centos"
+      password = "DevOps321"
+      host     = self.public_ip
   }
 
     inline = [
       "sudo labauto ansible",
-      "ansible-pull -i localhost, -U https://github.com/SRINU42/roboansible.git main.yml -e env=dev -e role_name=${var.name}",
+      "ansible-pull -i localhost, -U https://github.com/SRINU42/roboansible.git main.yml -e env=dev -e role_name=${var.name}"
     ]
   }
 }
@@ -25,7 +25,7 @@ resource "aws_route53_record" "www" {
   zone_id = "Z08987003F8NI5HB4QS5S"
   name    = "${var.name}-dev"
   type    = "A"
-  ttl     = 300
+  ttl     = 30
   records = [aws_instance.web.private_ip]
 }
 
